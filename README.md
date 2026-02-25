@@ -4,16 +4,75 @@
 
 Semester-long capstone for Statistics II: Data Analytics.
 
+## Team Members and Roles
+
+- Lailah — Project coordination and report integration
+- Stevie — Data acquisition and cleaning pipeline
+- Isabelle — Exploratory analysis and visualization
+- Sienna — Documentation, QA checks, and reproducibility
+
+## Research Question
+
+How do U.S. REIT performance metrics vary with changes in U.S. 15-year mortgage rates over time?  
+This project builds a year-level panel to evaluate whether rate environments are associated with systematic differences in average REIT returns and market equity.
+
+## Dataset Overview
+
+### Primary Dataset (REIT)
+- Source file: `data/raw/REIT_sample_2000_2024_All_Variables.csv`
+- Script: `code/fetch_reit_data.py`
+- Clean output: `data/processed/reit_clean.csv`
+- Key variables used: `usdret`, `market_equity`, `date` → annual `year`
+
+### Supplementary Dataset (FRED)
+- Source file: `data/raw/MORTGAGE15US.csv`
+- Script: `code/fetch_fred_data.py`
+- Clean output: `data/processed/fred_clean.csv`
+- Key variable used: `MORTGAGE15US` (weekly) → annual average by `year`
+
+## Preliminary Hypotheses
+
+1. Higher average mortgage rates are associated with lower average annual REIT returns.
+2. Higher mortgage-rate environments are associated with lower average REIT market equity.
+3. Years with large increases in mortgage rates show weaker REIT outcomes than stable-rate years.
+4. The REIT–rate relationship is not constant over time and may vary across macroeconomic periods.
+
 ## Project Structure
 
-- **code/** — Python scripts and notebooks. Use `config_paths.py` for paths.
-- **data/OpenData_rows.csv** - Datasets we can use.
-- **data/raw/** — Original data (read-only)
-- **data/processed/** — Intermediate cleaning outputs
-- **data/final/** — M1 output: analysis-ready panel
+- **code/** — Project scripts. Use `config_paths.py` for relative paths.
+	- `fetch_reit_data.py` — Fetch + clean primary REIT dataset
+	- `fetch_fred_data.py` — Fetch + clean supplementary FRED dataset
+	- `merge_final_panel.py` — Merge processed datasets into final panel
+- **data/raw/** — Raw source files + standardized raw extracts
+- **data/processed/** — Cleaned dataset outputs (`*_clean.csv`)
+- **data/final/** — Final merged panel + data dictionary
 - **results/figures/** — Visualizations
-- **results/tables/** — Regression tables, summary stats
-- **results/reports/** — Milestone memos
-- **tests/** — Autograding test suite
+- **results/tables/** — Summary tables/regression tables
+- **results/reports/** — Milestone writeups
+- **tests/** — Test placeholders
 
 Run `python code/config_paths.py` to verify paths.
+
+## How to Run the Pipeline (Step-by-Step)
+
+Run scripts from the project root:
+
+1. Verify project paths and directories:
+	- `python code/config_paths.py`
+2. Build primary cleaned dataset from REIT source:
+	- `python code/fetch_reit_data.py`
+3. Build supplementary cleaned dataset from FRED source:
+	- `python code/fetch_fred_data.py`
+4. Merge cleaned files into final analysis panel:
+	- `python code/merge_final_panel.py`
+
+## Key Outputs
+
+- Raw extracts:
+	- `data/raw/reit_raw.csv`
+	- `data/raw/fred_raw.csv`
+- Processed datasets:
+	- `data/processed/reit_clean.csv`
+	- `data/processed/fred_clean.csv`
+- Final panel:
+	- `data/final/dataset_analysis_panel.csv`
