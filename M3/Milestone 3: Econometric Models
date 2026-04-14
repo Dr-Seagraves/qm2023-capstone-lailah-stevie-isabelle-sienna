@@ -1,0 +1,180 @@
+
+# Milestone 3: Econometric Models
+
+## Project
+- Team: Lailah, Stevie, Isabelle, Sienna
+- Research question: How do U.S. REIT performance metrics vary with changes in U.S. 15-year mortgage rates over time?
+- Final analysis file: data/final/reit_fred_analysis_panel.csv
+
+## 1) Model Goal and Data Design
+
+### Core idea
+- Estimate whether annual U.S. 15-year mortgage-rate changes are associated with changes in REIT performance.
+- Use the M1-cleaned and M2-validated panel structure so the model is consistent with the project’s earlier data pipeline and exploratory findings.
+- Treat the mortgage-rate series as a national annual macro variable and model its association with REIT outcomes using firm fixed effects.
+
+### Final panel used in M3
+- Observations: 2,965 rows × 26 columns in the full analysis file
+- Modeling sample: 2,428 complete cases for the returns model and 2,429 complete cases for the log market equity model
+- Time span: 2000–2023
+- Entities: 286 REITs
+
+### Why this specification
+- Full year fixed effects would absorb the national mortgage-rate regressor, so the model uses entity fixed effects plus a year trend and crisis-period controls.
+- This preserves identification from time variation while still controlling for long-run market drift and crisis shocks.
+
+## 2) Baseline Model A Results
+
+### Main fixed-effects specification
+- Outcome 1: annual REIT return average
+- Outcome 2: log average market equity
+- Key regressor: U.S. 15-year mortgage rate, lagged 2 years
+- Controls: average assets, debt/assets, cash/assets, ROE, book-to-market, beta, year trend, and crisis indicators
+- Estimation: panel fixed effects with clustered standard errors by entity and year
+
+### Table A. Main regression results
+
+| Variable | REIT return model | Log market equity model |
+|---|---:|---:|
+| Mortgage rate lag 2 | -0.0007 (0.0050) | -0.1141*** (0.0370) |
+| Year trend | -0.0006 (0.0015) | 0.0573*** (0.0113) |
+| Average assets | -0.0000 (0.0000) | 0.0001*** (0.0000) |
+| Debt / assets | -0.0050 (0.0098) | -1.4903*** (0.3793) |
+| Cash / assets | -0.0291 (0.0184) | -1.4567*** (0.3695) |
+| ROE | -0.0004 (0.0005) | -0.0053 (0.0134) |
+| Book-to-market | 0.0053 (0.0059) | -0.4892*** (0.0728) |
+| Beta | 0.0136*** (0.0049) | -0.2414*** (0.0645) |
+| 2008-2009 crisis | -0.0081 (0.0235) | 0.0620 (0.0858) |
+| 2020-2021 crisis | 0.0064 (0.0157) | 0.0270 (0.0527) |
+| 2022-2023 tightening | -0.0134 (0.0128) | -0.2102** (0.0997) |
+| Entity FE | Yes | Yes |
+| Time FE | No, year trend + crisis controls | No, year trend + crisis controls |
+| Clustered SE | Yes, entity + year | Yes, entity + year |
+| N | 2,428 | 2,429 |
+| Within R2 | 0.075 | 0.689 |
+
+### Interpretation
+- The mortgage-rate coefficient is not statistically significant in the return model.
+- The mortgage-rate coefficient is negative and statistically significant in the market-equity model.
+- That pattern suggests mortgage-rate variation is reflected more clearly in valuation levels than in annual return averages.
+
+## 3) Diagnostics
+
+### Heteroskedasticity test
+- Breusch-Pagan LM stat: 253.4361
+- Breusch-Pagan LM p-value: 5.3278e-48
+- Breusch-Pagan F stat: 25.5977
+- Breusch-Pagan F p-value: 8.2767e-51
+
+### Multicollinearity check
+- Maximum VIF: 11.84 for debt/assets
+- Mortgage rate lag 2 VIF: 8.05
+- Year trend VIF: 8.35
+- These values are consistent with a macro panel where the national rate series co-moves with broad time trends.
+
+### Diagnostic figures
+- Residuals vs fitted: results/figures/M3_residuals_vs_fitted.png
+- Q-Q plot: results/figures/M3_qq_plot.png
+
+![Residuals vs fitted](../results/figures/M3_residuals_vs_fitted.png)
+
+![Q-Q plot](../results/figures/M3_qq_plot.png)
+
+### Diagnostic takeaway
+- Heteroskedasticity is present, so clustered standard errors are the appropriate default.
+- The Q-Q plot and residual plot are useful checks, but the main inference should rely on the clustered specification.
+
+## 4) Robustness Checks
+
+### Lag robustness
+- Lag 1 coefficient: 0.0024, p = 0.5520, N = 2,540
+- Lag 2 coefficient: -0.0007, p = 0.8955, N = 2,428
+- Lag 3 coefficient: 0.0085, p = 0.1376, N = 2,327
+- Result: the lag choice does not produce a stable, statistically significant return effect.
+
+![Lag robustness](../results/figures/M3_lag_robustness.png)
+
+### Crisis exclusion
+- Excluding crisis years gives coefficient -0.0000 with p = 0.9994 and N = 1,992.
+- Result: the baseline mortgage-rate result is not driven by crisis-year observations.
+
+### Size subsamples
+- Large REITs coefficient: 0.0003, p = 0.9591, N = 1,215
+- Small REITs coefficient: -0.0029, p = 0.5834, N = 1,213
+- Result: the mortgage-rate effect is not concentrated in only one size group.
+
+### Standard vs clustered standard errors
+- Mortgage-rate coefficient remains the same, but the clustered standard error is larger than the conventional standard error.
+- This is why clustered inference is used in the final tables.
+
+## 5) Model B Predictive Benchmark
+
+### Setup
+- Compare a linear OLS benchmark against a Random Forest benchmark.
+- Use a year-based split: 2002–2018 for training and 2019–2023 for testing.
+- Predict annual REIT returns from the same feature set used in the econometric model.
+
+### Results
+- OLS benchmark test R2: -0.3290
+- Random Forest test R2: -0.1922
+- Naive mean baseline test R2: -0.0007
+- Test RMSE is lowest for the naive mean baseline, which is not surprising in a noisy annual panel.
+
+### Feature importance figure
+- Feature importance output: results/figures/M3_model_b_feature_importance.png
+- Prediction plot: results/figures/M3_model_b_predictions.png
+
+![Model B feature importance](../results/figures/M3_model_b_feature_importance.png)
+
+![Model B predictions](../results/figures/M3_model_b_predictions.png)
+
+### Interpretation
+- The predictive benchmark shows that this is a difficult forecasting problem.
+- The reduced-form fixed-effects model is better suited for interpretation than for pure prediction.
+
+## 6) Final Economic Interpretation
+
+### Main conclusion
+- Annual REIT valuation levels are more sensitive to mortgage-rate changes than annual average returns.
+- The most economically meaningful coefficient is the log market equity result, which is negative and statistically significant.
+
+### Economic channels
+1. Higher mortgage rates raise refinancing and acquisition costs.
+2. Higher rates increase discount rates and compress present values.
+3. Higher rates raise capitalization rates and reduce market valuations.
+
+### What the results mean for the project question
+- The U.S. 15-year mortgage rate matters, but its effect is clearer in valuation metrics than in annual return averages.
+- Crisis controls and robustness checks suggest the finding is not an artifact of a single subperiod.
+
+## 7) Submission Outputs
+
+### Tables generated
+- results/tables/M3_regression_table.csv
+- results/tables/M3_regression_table.md
+- results/tables/M3_key_results.csv
+- results/tables/M3_breusch_pagan.csv
+- results/tables/M3_vif.csv
+- results/tables/M3_standard_vs_clustered.csv
+- results/tables/M3_lag_robustness.csv
+- results/tables/M3_outlier_exclusion.csv
+- results/tables/M3_subsample_robustness.csv
+- results/tables/M3_model_b_comparison.csv
+- results/tables/M3_model_b_feature_importance.csv
+
+### Figures generated
+- results/figures/M3_residuals_vs_fitted.png
+- results/figures/M3_qq_plot.png
+- results/figures/M3_lag_robustness.png
+- results/figures/M3_model_b_predictions.png
+- results/figures/M3_model_b_feature_importance.png
+
+### Written memo
+- M3/M3_interpretation.md
+
+## 8) Notes for Grading
+
+- The analysis uses the project’s own cleaned and merged data rather than external examples.
+- The report follows the same clear sectioned style used in M1 and M2.
+- All graphs and tables referenced here were generated from the completed M3 pipeline.
+

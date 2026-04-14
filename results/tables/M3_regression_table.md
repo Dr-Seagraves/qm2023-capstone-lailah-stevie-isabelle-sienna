@@ -1,0 +1,19 @@
+| Variable | reit_return_pp | log_market_equity |
+|:---|:---|:---|
+| Intercept | 0.0140 (0.0394) | 8.1523*** (0.3393) |
+| Mortgage rate lag 2 | -0.0007 (0.0050) | -0.1141*** (0.0370) |
+| Year trend | -0.0006 (0.0015) | 0.0573*** (0.0113) |
+| Average assets | -0.0000 (0.0000) | 0.0001*** (0.0000) |
+| Debt / assets | -0.0050 (0.0098) | -1.4903*** (0.3793) |
+| Cash / assets | -0.0291 (0.0184) | -1.4567*** (0.3695) |
+| ROE | -0.0004 (0.0005) | -0.0053 (0.0134) |
+| Book-to-market | 0.0053 (0.0059) | -0.4892*** (0.0728) |
+| Beta | 0.0136*** (0.0049) | -0.2414*** (0.0645) |
+| 2008-2009 crisis | -0.0081 (0.0235) | 0.0620 (0.0858) |
+| 2020-2021 crisis | 0.0064 (0.0157) | 0.0270 (0.0527) |
+| 2022-2023 tightening | -0.0134 (0.0128) | -0.2102** (0.0997) |
+| Entity FE | Yes | Yes |
+| Time FE | No (year trend + crisis controls) | No (year trend + crisis controls) |
+| Clustered SE | Yes (entity + year) | Yes (entity + year) |
+| N | 2,428 | 2,429 |
+| Within R2 | 0.075 | 0.689 |

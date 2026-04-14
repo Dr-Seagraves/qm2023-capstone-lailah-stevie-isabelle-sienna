@@ -17,6 +17,15 @@ For each use of AI tools, log the following:
 | 2026-02-25 | GitHub Copilot (GPT-5.3-Codex) | Draft comprehensive `M1_data_quality_report.md` with computed metrics | Y | Counts/statistics cross-checked against generated CSVs |
 | 2026-02-25 | GitHub Copilot (GPT-5.3-Codex) | Draft and complete AI audit appendix | Y | Team verified entries reflect actual AI-assisted tasks |
 
+## M3 AI Assistance Log
+
+| Date | Tool/Model | Prompt Summary | Output Used? (Y/N) | Human Verification Performed |
+|---|---|---|---|---|
+| 2026-04-13 | GitHub Copilot (GPT-5.3-Codex) | Build the M3 econometric pipeline for annual REIT metrics versus U.S. 15-year mortgage rates | Y | Code was run end-to-end and the resulting tables, figures, and memo were checked against the saved outputs |
+| 2026-04-13 | GitHub Copilot (GPT-5.3-Codex) | Debug panel-model robustness checks, diagnostics, and benchmark code | Y | Pipeline rerun after each fix until the script completed successfully |
+| 2026-04-13 | GitHub Copilot (GPT-5.3-Codex) | Update README, M3 report, and interpretation memo location/content to match generated results | Y | Final documentation was cross-checked against exported CSV and PNG outputs and the memo was moved under M3 |
+| 2026-04-14 | GitHub Copilot (GPT-5.3-Codex) | Final M3 QA rerun against rubric requirements and output integrity check | Y | Ran `python code/capstone_models.py` successfully (exit code 0), confirmed diagnostics/robustness tables and all five M3 figures were regenerated, and validated files open without markdown/lint errors |
+
 ## Usage Notes
 
 - AI may assist with code drafting, debugging, and documentation structure.
@@ -41,6 +50,13 @@ For each use of AI tools, log the following:
 - Confirm that all team member names/roles match the final roster.
 - Complete final econometric interpretation review as a group.
 - Ensure any policy/course-specific AI disclosure wording is fully satisfied.
+
+## M3 Verification Notes
+
+- The M3 pipeline completed successfully and wrote the documented tables and figures.
+- The main REIT return coefficient is not statistically significant, while the log market equity result is statistically significant.
+- The diagnostics indicate heteroskedasticity, which justifies the clustered standard errors reported in the memo.
+- The interpretation memo is stored in M3/M3_interpretation.md and is regenerated there by the M3 script.
 
 ---
 

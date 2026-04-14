@@ -69,10 +69,33 @@ Run scripts from the project root:
 ## Key Outputs
 
 - Raw extracts:
-	- `data/raw/reit_raw.csv`
-	- `data/raw/fred_raw.csv`
+- `data/raw/reit_raw.csv`
+- `data/raw/fred_raw.csv`
 - Processed datasets:
-	- `data/processed/reit_clean.csv`
-	- `data/processed/fred_clean.csv`
+- `data/processed/reit_clean.csv`
+- `data/processed/fred_clean.csv`
 - Final panel:
-	- `data/final/dataset_analysis_panel.csv`
+- `data/final/reit_fred_analysis_panel.csv`
+
+## Milestone 3 Econometric Analysis
+
+The M3 submission is built around `code/capstone_models.py`, which estimates panel fixed-effects models for annual REIT returns and log market equity against lagged U.S. 15-year mortgage rates and firm controls.
+
+### M3 Deliverables
+
+- [Milestone 3 full report](M3/Milestone%203:%20Econometric%20Models)
+- [M3 interpretation memo](M3/M3_interpretation.md) - narrative interpretation of the econometric results
+- `results/tables/M3_regression_table.csv` and `results/tables/M3_regression_table.md` - main Model A results
+- `results/tables/M3_breusch_pagan.csv` and `results/tables/M3_vif.csv` - diagnostics
+- `results/tables/M3_lag_robustness.csv`, `results/tables/M3_outlier_exclusion.csv`, and `results/tables/M3_subsample_robustness.csv` - robustness checks
+- `results/tables/M3_standard_vs_clustered.csv` - standard error comparison
+- `results/tables/M3_model_b_comparison.csv` and `results/tables/M3_model_b_feature_importance.csv` - predictive benchmark
+- `results/figures/M3_residuals_vs_fitted.png`, `results/figures/M3_qq_plot.png`, `results/figures/M3_lag_robustness.png`, `results/figures/M3_model_b_predictions.png`, and `results/figures/M3_model_b_feature_importance.png` - required plots
+
+### M3 Model Summary
+
+- Returns FE sample size: 2,428
+- Log market equity FE sample size: 2,429
+- Mortgage-rate coefficient in returns model: -0.0007 with p = 0.8955
+- Mortgage-rate coefficient in log market equity model: -0.1141 with p = 0.0021
+- Breusch-Pagan test: strong evidence of heteroskedasticity, so clustered standard errors are used
