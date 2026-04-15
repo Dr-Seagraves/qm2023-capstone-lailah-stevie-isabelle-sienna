@@ -25,6 +25,8 @@ For each use of AI tools, log the following:
 | 2026-04-13 | GitHub Copilot (GPT-5.3-Codex) | Debug panel-model robustness checks, diagnostics, and benchmark code | Y | Pipeline rerun after each fix until the script completed successfully |
 | 2026-04-13 | GitHub Copilot (GPT-5.3-Codex) | Update README, M3 report, and interpretation memo location/content to match generated results | Y | Final documentation was cross-checked against exported CSV and PNG outputs and the memo was moved under M3 |
 | 2026-04-14 | GitHub Copilot (GPT-5.3-Codex) | Final M3 QA rerun against rubric requirements and output integrity check | Y | Ran `python code/capstone_models.py` successfully (exit code 0), confirmed diagnostics/robustness tables and all five M3 figures were regenerated, and validated files open without markdown/lint errors |
+| 2026-04-15 | GitHub Copilot (GPT-5.3-Codex) | Re-run M3 pipeline and reconcile README filename/path references with actual repository files | Y | Re-ran `python code/capstone_models.py` (successful completion), verified M3 tables/figures/memo outputs, and corrected README script-path references to canonical `code/...` filenames |
+| 2026-04-15 | GitHub Copilot (GPT-5.3-Codex) | Add strict two-way FE appendix note, standardize M3 report filename to `.md`, and refresh generated memo | Y | Updated report/memo language on FE absorption logic, renamed `M3/Milestone 3: Econometric Models` to `M3/M3_econometric_models.md`, reran `python code/capstone_models.py`, and verified links/outputs are consistent |
 
 ## Usage Notes
 

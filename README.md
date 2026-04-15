@@ -39,10 +39,10 @@ This project builds a year-level panel to evaluate whether rate environments are
 
 ## Project Structure
 
-- **code/** — Project scripts. Use `config_paths.py` for relative paths.
-	- `fetch_reit_data.py` — Fetch + clean primary REIT dataset
-	- `fetch_fred_data.py` — Fetch + clean supplementary FRED dataset
-	- `merge_final_panel.py` — Merge processed datasets into final panel
+- **code/** — Project scripts. Use `code/config_paths.py` for relative paths.
+	- `code/fetch_reit_data.py` — Fetch + clean primary REIT dataset
+	- `code/fetch_fred_data.py` — Fetch + clean supplementary FRED dataset
+	- `code/merge_final_panel.py` — Merge processed datasets into final panel
 - **data/raw/** — Raw source files + standardized raw extracts
 - **data/processed/** — Cleaned dataset outputs (`*_clean.csv`)
 - **data/final/** — Final merged panel + data dictionary
@@ -83,7 +83,7 @@ The M3 submission is built around `code/capstone_models.py`, which estimates pan
 
 ### M3 Deliverables
 
-- [Milestone 3 full report](M3/Milestone%203:%20Econometric%20Models)
+- [Milestone 3 full report](M3/M3_econometric_models.md)
 - [M3 interpretation memo](M3/M3_interpretation.md) - narrative interpretation of the econometric results
 - `results/tables/M3_regression_table.csv` and `results/tables/M3_regression_table.md` - main Model A results
 - `results/tables/M3_breusch_pagan.csv` and `results/tables/M3_vif.csv` - diagnostics

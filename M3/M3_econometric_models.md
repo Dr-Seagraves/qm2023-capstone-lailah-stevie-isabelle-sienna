@@ -147,6 +147,19 @@
 - The U.S. 15-year mortgage rate matters, but its effect is clearer in valuation metrics than in annual return averages.
 - Crisis controls and robustness checks suggest the finding is not an artifact of a single subperiod.
 
+## 6A) Strict Two-Way FE Appendix Specification
+
+### Appendix purpose
+- Document what happens under strict two-way fixed effects (entity FE + full year FE).
+
+### Identification result
+- In a strict two-way FE setup, the annual mortgage-rate regressor is perfectly collinear with year effects because the mortgage rate is national and identical across entities in each year.
+- Therefore, the mortgage-rate coefficient is absorbed by the year dummies and is not separately estimable.
+
+### Why the baseline is reported instead
+- The baseline specification keeps entity fixed effects, a year trend, and crisis-period indicators, which preserves estimability of the lagged mortgage-rate coefficient.
+- Inference still uses two-way clustering (entity and year), so standard errors remain robust to panel dependence across both dimensions.
+
 ## 7) Submission Outputs
 
 ### Tables generated

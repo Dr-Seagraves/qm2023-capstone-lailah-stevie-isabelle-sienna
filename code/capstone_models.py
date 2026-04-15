@@ -507,6 +507,12 @@ This is a reduced-form annual panel. Because the mortgage-rate regressor is nati
 
 Annual aggregation also smooths short-run monthly dynamics, so the model should be interpreted as a longer-run association rather than a high-frequency forecasting engine.
 
+## Two-Way FE Appendix Note
+
+As a specification check, a strict two-way fixed-effects model with entity and full year dummies was evaluated conceptually. In that setup, the mortgage-rate regressor is fully absorbed because it is common to all entities within each year. As a result, the mortgage-rate coefficient is not separately identified under saturated year effects.
+
+The reported baseline therefore uses entity fixed effects plus a year trend and crisis indicators, while retaining two-way clustered standard errors (entity and year). This keeps macro-time controls in the model without mechanically removing the national mortgage-rate signal.
+
 ## Outputs
 
 - results/tables/M3_regression_table.csv
