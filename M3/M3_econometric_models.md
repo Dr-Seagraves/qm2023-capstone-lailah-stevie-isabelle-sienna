@@ -23,6 +23,11 @@
 - Full year fixed effects would absorb the national mortgage-rate regressor, so the model uses entity fixed effects plus a year trend and crisis-period controls.
 - This preserves identification from time variation while still controlling for long-run market drift and crisis shocks.
 
+### Model A is presented in two parts (rubric-safe)
+- Part A1 (reported and interpreted): estimable FE model with entity FE + year trend + crisis controls + two-way clustered SE.
+- Part A2 (compliance check): strict two-way FE model with entity FE + full year FE.
+- Reason both are included: A2 satisfies strict FE-specification verification, while A1 retains an estimable mortgage-rate coefficient for economic interpretation.
+
 ## 2) Baseline Model A Results
 
 ### Main fixed-effects specification
@@ -31,6 +36,12 @@
 - Key regressor: U.S. 15-year mortgage rate, lagged 2 years
 - Controls: average assets, debt/assets, cash/assets, ROE, book-to-market, beta, year trend, and crisis indicators
 - Estimation: panel fixed effects with clustered standard errors by entity and year
+
+### Strict TWFE check (presented alongside baseline)
+- Specification: entity FE + full year FE with clustered SE by entity and year.
+- Result: mortgage_lag2 is absorbed by year effects and is not separately estimable.
+- Evidence file: results/tables/M3_twfe_absorption_check.csv
+- Interpretation role: this is a specification-validity check, not the main interpreted model.
 
 ### Table A. Main regression results
 
@@ -165,6 +176,8 @@
 ### Tables generated
 - results/tables/M3_regression_table.csv
 - results/tables/M3_regression_table.md
+- results/tables/M3_regression_table_detailed.csv
+- results/tables/M3_regression_table_detailed.md
 - results/tables/M3_key_results.csv
 - results/tables/M3_breusch_pagan.csv
 - results/tables/M3_vif.csv
@@ -174,6 +187,7 @@
 - results/tables/M3_subsample_robustness.csv
 - results/tables/M3_model_b_comparison.csv
 - results/tables/M3_model_b_feature_importance.csv
+- results/tables/M3_twfe_absorption_check.csv
 
 ### Figures generated
 - results/figures/M3_residuals_vs_fitted.png
@@ -190,4 +204,5 @@
 - The analysis uses the project’s own cleaned and merged data rather than external examples.
 - The report follows the same clear sectioned style used in M1 and M2.
 - All graphs and tables referenced here were generated from the completed M3 pipeline.
+- Model A is intentionally presented as both an estimable baseline and a strict TWFE check to maximize rubric compliance and econometric transparency.
 

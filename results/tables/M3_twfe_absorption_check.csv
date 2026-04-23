@@ -1,0 +1,9 @@
+variable,kept_in_strict_twfe,absorbed_by_fe,outcome,nobs
+const,yes,no,reit_avg_usdret,2428
+mortgage_lag2,no,yes,reit_avg_usdret,2428
+reit_avg_assets,yes,no,reit_avg_usdret,2428
+reit_avg_debt_at,yes,no,reit_avg_usdret,2428
+reit_avg_cash_at,yes,no,reit_avg_usdret,2428
+reit_avg_roe,yes,no,reit_avg_usdret,2428
+reit_avg_btm,yes,no,reit_avg_usdret,2428
+reit_avg_beta,yes,no,reit_avg_usdret,2428

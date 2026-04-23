@@ -27,6 +27,8 @@ For each use of AI tools, log the following:
 | 2026-04-14 | GitHub Copilot (GPT-5.3-Codex) | Final M3 QA rerun against rubric requirements and output integrity check | Y | Ran `python code/capstone_models.py` successfully (exit code 0), confirmed diagnostics/robustness tables and all five M3 figures were regenerated, and validated files open without markdown/lint errors |
 | 2026-04-15 | GitHub Copilot (GPT-5.3-Codex) | Re-run M3 pipeline and reconcile README filename/path references with actual repository files | Y | Re-ran `python code/capstone_models.py` (successful completion), verified M3 tables/figures/memo outputs, and corrected README script-path references to canonical `code/...` filenames |
 | 2026-04-15 | GitHub Copilot (GPT-5.3-Codex) | Add strict two-way FE appendix note, standardize M3 report filename to `.md`, and refresh generated memo | Y | Updated report/memo language on FE absorption logic, renamed `M3/Milestone 3: Econometric Models` to `M3/M3_econometric_models.md`, reran `python code/capstone_models.py`, and verified links/outputs are consistent |
+| 2026-04-23 | GitHub Copilot (GPT-5.3-Codex) | Rubric-safety M3 pass: add strict TWFE absorption check output and detailed publication-style regression table exports | Y | Implemented `M3_twfe_absorption_check.csv` and detailed coefficient/SE/t-stat/p-value tables, reran `python code/capstone_models.py`, and confirmed expected absorption warning for `mortgage_lag2` under strict TWFE |
+| 2026-04-23 | GitHub Copilot (GPT-5.3-Codex) | Present both Model A specifications (estimable FE baseline + strict TWFE compliance check) consistently across M3 documents | Y | Updated memo template in `code/capstone_models.py`, synced `M3/M3_interpretation.md` and `M3/M3_econometric_models.md`, reran pipeline, and verified no file errors in edited artifacts |
 
 ## Usage Notes
 
@@ -59,6 +61,8 @@ For each use of AI tools, log the following:
 - The main REIT return coefficient is not statistically significant, while the log market equity result is statistically significant.
 - The diagnostics indicate heteroskedasticity, which justifies the clustered standard errors reported in the memo.
 - The interpretation memo is stored in M3/M3_interpretation.md and is regenerated there by the M3 script.
+- The strict TWFE compliance check confirms `mortgage_lag2` is absorbed under saturated year fixed effects (`kept_in_strict_twfe = no`, `absorbed_by_fe = yes`).
+- For rubric coverage and interpretability, M3 now reports both: an estimable FE baseline and a strict TWFE appendix check.
 
 ---
 
